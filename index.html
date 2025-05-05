@@ -18,39 +18,25 @@
 </head>
 <body>
   <div id="viz"></div>
-
   <script>
     const config = {
       containerId: "viz",
       neo4j: {
-        serverUrl: "neo4j+s://a04970bd.databases.neo4j.io", // your AuraDB connection URI
-        serverUser: "neo4j", // or the username you set
-        serverPassword: "0WnhJozzUqPGjCfBYVNtjmum55Myl9uGHm4UNPLZ7sM", // replace with your DB password
+        serverUrl: "bolt://44.222.160.187",
+        serverUser: "neo4j",
+        serverPassword: "societies-fashions-noun",
       },
       labels: {
-        Team: {
-          caption: "name",
-        },
-        Topic: {
-          caption: "name",
-        },
-        Resource: {
-          caption: "name",
-        },
-        Group: {
-          caption: "name",
-        }
+        // Add/adjust these based on your actual labels
+        Team: { caption: "name" },
+        Topic: { caption: "name" },
+        Resource: { caption: "name" },
+        Group: { caption: "name" }
       },
       relationships: {
-        FOCUSES_ON: {
-          caption: true
-        },
-        WORKS_WITH: {
-          caption: true
-        },
-        APPLIES_FOR: {
-          caption: true
-        }
+        FOCUSES_ON: { caption: true },
+        WORKS_WITH: { caption: true },
+        APPLIES_FOR: { caption: true }
       },
       initialCypher: "MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 100"
     };
