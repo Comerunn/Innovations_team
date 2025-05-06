@@ -17,7 +17,7 @@
   <div id="mynetwork"></div>
 
   <script>
-    fetch('/static/graph.json')
+    fetch('graph.json')
       .then(response => response.json())
       .then(data => {
         const nodes = [];
