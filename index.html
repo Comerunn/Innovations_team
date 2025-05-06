@@ -13,25 +13,68 @@
   </style>
 </head>
 <body>
-  <h2 style="text-align:center;">Graph Visualization</h2>
+  <h2 style="text-align:center;">Innovations Team</h2>
   <div id="mynetwork"></div>
 
   <script>
-    fetch('graph.json')
+    fetch('/static/graph.json')
       .then(response => response.json())
       .then(data => {
+        const nodes = [];
+        const edges = [];
+
+        const nodeMap = new Map(); // to avoid duplicates
+
+        data.forEach(entry => {
+          const source = entry.n.properties.name;
+          const target = entry.m.properties.name;
+
+          if (!nodeMap.has(source)) {
+            nodeMap.set(source, nodes.length);
+            let nodeColor = '#FFDD33';  // default yellow for sub-nodes
+            if (source === "Innovations Team") {
+              nodeColor = '#1F77B4';  // blue for central node
+            } else if (["Research", "Grants", "Events/courses", "Formal Partners", "Collaborators", "Dissemination"].includes(source)) {
+              nodeColor = '#FF5733';  // red for main activity nodes
+            }
+            nodes.push({ id: nodes.length, label: source, color: nodeColor });
+          }
+
+          if (!nodeMap.has(target)) {
+            nodeMap.set(target, nodes.length);
+            let nodeColor = '#FFDD33';  // default yellow for sub-nodes
+            if (target === "Innovations Team") {
+              nodeColor = '#1F77B4';  // blue for central node
+            } else if (["Research", "Grants", "Events/courses", "Formal Partners", "Collaborators", "Dissemination"].includes(target)) {
+              nodeColor = '#FF5733';  // red for main activity nodes
+            }
+            nodes.push({ id: nodes.length, label: target, color: nodeColor });
+          }
+
+          edges.push({ from: nodeMap.get(source), to: nodeMap.get(target) });
+        });
+
         const container = document.getElementById('mynetwork');
-        const nodes = new vis.DataSet(data.nodes);
-        const edges = new vis.DataSet(data.links);
-        const networkData = { nodes: nodes, edges: edges };
-        const options = {
-          nodes: { shape: "dot", size: 16 },
-          edges: { arrows: "to", smooth: true },
-          physics: { stabilization: false }
+        const visData = {
+          nodes: new vis.DataSet(nodes),
+          edges: new vis.DataSet(edges)
         };
-        new vis.Network(container, networkData, options);
+        const options = {
+          nodes: {
+            shape: 'dot',
+            size: 15
+          },
+          edges: {
+            arrows: 'to',
+            color: 'gray'
+          },
+          physics: {
+            enabled: true
+          }
+        };
+        const network = new vis.Network(container, visData, options);
       })
-      .catch(err => console.error('Failed to load graph.json:', err));
+      .catch(error => console.error('Error loading or processing data:', error));
   </script>
 </body>
 </html>
