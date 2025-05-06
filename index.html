@@ -59,33 +59,19 @@
           nodes: new vis.DataSet(nodes),
           edges: new vis.DataSet(edges)
         };
-       const options = {
-  nodes: {
-    shape: 'dot',
-    size: 15
-  },
-  edges: {
-    arrows: 'to',
-    color: 'gray',
-    length: 300  // This increases the length of the arrows
-  },
-  physics: {
-    enabled: true,
-    solver: 'forceAtlas2Based',
-    forceAtlas2Based: {
-      gravitationalConstant: -50,  // Controls node repulsion (higher value increases repulsion)
-      centralGravity: 0.01,        // Controls the central force pulling nodes together
-      springLength: 300,           // Controls the spring length (distance between nodes)
-      springConstant: 0.05,        // Controls the strength of the spring
-      damping: 0.4,                // Controls the speed of the simulation
-      avoidOverlap: 0.1            // Controls node overlap avoidance
-    },
-    stabilization: {
-      iterations: 1000,            // Increase this for more thorough stabilization
-      updateInterval: 25
-    }
-  }
-};
+        const options = {
+          nodes: {
+            shape: 'dot',
+            size: 15
+          },
+          edges: {
+            arrows: 'to',
+            color: 'gray'
+          },
+          physics: {
+            enabled: true
+          }
+        };
         const network = new vis.Network(container, visData, options);
       })
       .catch(error => console.error('Error loading or processing data:', error));
