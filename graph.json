@@ -713,6 +713,38 @@
       "elementId": "4:90e52fc2-404d-4270-b012-940dab0c1d67:16"
     }
   },
+   {
+  "n": {
+    "identity": 5,
+    "labels": [
+      "Activity"
+    ],
+    "properties": {
+      "name": "Collaborators"
+    },
+    "elementId": "4:90e52fc2-404d-4270-b012-940dab0c1d67:5"
+  },
+  "r": {
+    "identity": 6917536724222476312,
+    "start": 5,
+    "end": 24,
+    "type": "INCLUDES",
+    "properties": {},
+    "elementId": "5:90e52fc2-404d-4270-b012-940dab0c1d67:6917536724222476312",
+    "startNodeElementId": "4:90e52fc2-404d-4270-b012-940dab0c1d67:5",
+    "endNodeElementId": "4:90e52fc2-404d-4270-b012-940dab0c1d67:24"
+  },
+  "m": {
+    "identity": 24,
+    "labels": [
+      "Item"
+    ],
+    "properties": {
+      "name": "Indigenous Circle"
+    },
+    "elementId": "4:90e52fc2-404d-4270-b012-940dab0c1d67:24"
+  }
+}
   {
     "n": {
       "identity": 7,
